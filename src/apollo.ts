@@ -1,7 +1,7 @@
 import ApolloClient, { Operation } from "apollo-boost";
 
 const client = new ApolloClient({
-    //기본 클라이언트 상태정의
+    
   clientState: {
     defaults: {
       auth: {
@@ -9,10 +9,8 @@ const client = new ApolloClient({
         isLoggedIn: Boolean(localStorage.getItem("jwt"))
       }
     },
-    //resolver 정의
     resolvers: {
       Mutation: {
-        //유저 로그인
         logUserIn: (_, { token }, { cache }) => {
           localStorage.setItem("jwt", token);
           cache.writeDate({
@@ -25,7 +23,6 @@ const client = new ApolloClient({
           });
           return null;
         },
-        //유저 로그아웃
         logUserOut: (_, __, { cache }) => {
           localStorage.removeItem("jwt");
           cache.writeDate({
