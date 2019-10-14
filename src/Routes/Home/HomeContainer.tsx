@@ -1,6 +1,6 @@
 import React from "react";
-import HomePresenter from "./HomePresenter";
 import { RouteComponentProps } from "react-router";
+import HomePresenter from "./HomePresenter";
 
 interface IState {
   isMenuOpen: boolean;
