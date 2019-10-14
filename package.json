@@ -3,20 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-router-dom": "^5.1.0",
+    "@types/styled-components": "^4.1.19",
     "apollo-boost": "^0.4.4",
     "graphql": "^14.5.8",
     "prop-types": "^15.7.2",
     "react": "^16.10.0",
-    "react-apollo": "^3.1.1",
+    "react-apollo": "^2.5.0",
     "react-dom": "^16.10.0",
-    "react-scripts-ts": "3.1.0",
-    "styled-components": "^4.4.0"
+    "react-facebook-login": "^4.1.1",
+    "react-helmet": "^5.2.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts-ts": "^4.0.8",
+    "react-sidebar": "^3.0.2",
+    "react-toastify": "^5.4.0",
+    "styled-components": "^4.4.0",
+    "styled-reset": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "precodegen": "apollo schema:download --endpoint=http://localhost:4000/graphql",
+    "codegen": "apollo codegen:generate src/types/api.d.ts --queries=src/**/*.queries.ts --addTypename --localSchemaFile=./schema.json --target typescript --outputFlat"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
@@ -24,5 +34,11 @@
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
     "typescript": "^3.6.3"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
