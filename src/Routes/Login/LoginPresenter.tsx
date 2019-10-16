@@ -88,7 +88,7 @@ const LoginPresenter: React.SFC<IProps> = () => (
       </Link>
       <Link to={"/social-login"}>
         <SocialLogin>
-          <SocialLink>소셜 아이디 로그인</SocialLink>
+          <SocialLink>소셜 로그인</SocialLink>
         </SocialLogin>
       </Link>
     </Footer>
