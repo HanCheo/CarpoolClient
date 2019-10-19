@@ -31,19 +31,23 @@ const Logo = styled.div`
   font-size: 15px;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 20px;
+`;
 
 const Footer = styled.div``;
 
 const Subtitle = styled.h2`
+  margin: 20px 0px;
   font-size: 30px;
   text-align: center;
 `;
 
 const FakeInput = styled.div`
-  margin: 50px 0px;
-  font-size: 25px;
-  font-weight: 300;
+  margin: 0px 0px;
+  font-size: 20px;
+  font-weight: 100;
+  text-align: center;
 `;
 
 const PhoneLogin = styled.div`
@@ -57,7 +61,9 @@ const Grey = styled.span`
 
 const SocialLogin = styled.div`
   border-top: 1px solid ${props => props.theme.greyColor};
-  padding: 30px 20px;
+  padding: 15px 20px;
+  text-align: center;
+
 `;
 
 const SocialLink = styled.span`
@@ -82,7 +88,7 @@ const LoginPresenter: React.SFC<IProps> = () => (
       <Link to={"/phone-login"}>
         <PhoneLogin>
           <FakeInput>
-            🇰🇷 +82 <Grey>핸드폰 로그인</Grey>
+            <Grey>핸드폰 로그인</Grey>
           </FakeInput>
         </PhoneLogin>
       </Link>
