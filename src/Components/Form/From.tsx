@@ -1,11 +1,11 @@
 import React from "react";
 
-interface IPorps {
+interface IProps {
   submitFn: any;
   className?: string;
 }
 
-const Form: React.SFC<IPorps> = ({ submitFn, className, children }) => (
+const Form: React.SFC<IProps> = ({ submitFn, className, children }) => (
   <form
     className={className}
     onSubmit={e => {

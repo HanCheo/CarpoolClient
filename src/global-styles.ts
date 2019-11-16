@@ -2,7 +2,8 @@ import reset from "styled-reset";
 import { createGlobalStyle } from "./typed-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+  @import url('https://fonts.googleapis.com/css?family=Sunflower:300&display=swap&subset=korean');
+  @import url('https://fonts.googleapis.com/css?family=Cute+Font|Sunflower:300&display=swap&subset=korean');
   ${reset}
   * {
     box-sizing: border-box;
@@ -12,14 +13,14 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Cute Font", sans-serif;
   }
   input,
   button {
     &:focus,&:active{outline: none}
   }
   h1,h2,h3,h4,h5,h6 {
-    font-family: "Maven Pro", sans-serif;
+    font-family: "Sunflower", sans-serif;
   }
 
 `;

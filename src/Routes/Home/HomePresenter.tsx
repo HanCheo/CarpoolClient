@@ -1,10 +1,13 @@
 import React from "react";
+import { MutationFn } from "react-apollo";
 import Helmet from "react-helmet";
 import Sidebar from "react-sidebar";
 import AddressBar from "../../Components/AddressBar";
 import Button from "../../Components/Button";
 import Menu from "../../Components/Menu";
+import RidePopUp from "../../Components/RidePopUp";
 import styled from "../../typed-components";
+import { getRides, userProfile } from "../../types/api";
 
 const Container = styled.div``;
 const MenuButton = styled.button`
@@ -40,6 +43,10 @@ const ExtendedButton = styled(Button)`
   width: 80%;
 `;
 
+const RequestButton = styled(ExtendedButton)`
+  bottom: 250px;
+`;
+
 interface IProps {
   isMenuOpen: boolean;
   toggleMenu: () => void;
@@ -47,6 +54,11 @@ interface IProps {
   mapRef: any;
   toAddress: string;
   onAddressSubmit: () => void;
+  price?: string;
+  data?: userProfile;
+  requestRideFn?: MutationFn;
+  acceptRideFn?: MutationFn;
+  nearbyRide?: getRides;
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -57,7 +69,12 @@ const HomePresenter: React.SFC<IProps> = ({
   toAddress,
   mapRef,
   onInputChange,
-  onAddressSubmit
+  onAddressSubmit,
+  price,
+  data: { GetMyProfile: { user = null } = {} } = {},
+  nearbyRide: { GetNearbyRide: { ride = null } = {} } = {},
+  requestRideFn,
+  acceptRideFn
 }) => (
   <Container>
     <Helmet>
@@ -75,19 +92,41 @@ const HomePresenter: React.SFC<IProps> = ({
         }
       }}
     >
-      {" "}
       {!loading && <MenuButton onClick={toggleMenu}>|||</MenuButton>}
-      <AddressBar
-        name={"toAddress"}
-        onChange={onInputChange}
-        value={toAddress}
-        onBlur={null}
-      />
-      <ExtendedButton
-        onClick={onAddressSubmit}
-        disabled={toAddress === ""}
-        value={"주소 선택"}
-      />
+      {user && !user.isDriving && (
+        <AddressBar
+          name={"toAddress"}
+          onChange={onInputChange}
+          value={toAddress}
+          onBlur={null}
+        />
+      )}
+      {price && (
+        <RequestButton
+          onClick={requestRideFn}
+          disabled={toAddress === ""}
+          value={`이동 요청하기 가격: ( ${price}원 )`}
+        />
+      )}
+      {ride && (
+        <RidePopUp
+          id={ride.id}
+          pickUpAddress={ride.pickUpAddress}
+          dropOffAddress={ride.dropOffAddress}
+          price={ride.price}
+          distance={ride.distance}
+          passengerName={ride.passenger.fullName!}
+          passengerPhoto={ride.passenger.profilePhoto!}
+          acceptRideFn={acceptRideFn}
+        />
+      )}
+      {user && !user.isDriving && (
+        <ExtendedButton
+          onClick={onAddressSubmit}
+          disabled={toAddress === ""}
+          value={price ? "장소 변경" : "장소 선택"}
+        />
+      )}
       <Map ref={mapRef} />
     </Sidebar>
   </Container>

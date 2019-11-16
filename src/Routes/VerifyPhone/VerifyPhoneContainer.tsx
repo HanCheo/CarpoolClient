@@ -28,6 +28,7 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
     };
   }
   public render() {
+    const { history } = this.props;
     const { verificationKey, phoneNumber } = this.state;
     return (
       <Mutation mutation={LOG_USER_IN}>
@@ -47,9 +48,16 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
                       token: CompletePhoneVerification.token
                     }
                   });
+                  toast.success("로그인에 성공했습니다.");
+                } else {
+                  history.push({
+                    pathname: "/complete-profile",
+                    state: {
+                      phoneNumber
+                    }
+                  });
+                  toast.success("인증에 성공했습니다.");
                 }
-
-                toast.success("인증에 성공했습니다.");
               } else {
                 toast.error(CompletePhoneVerification.error);
               }

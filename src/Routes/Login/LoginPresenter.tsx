@@ -92,11 +92,17 @@ const LoginPresenter: React.SFC<IProps> = () => (
           </FakeInput>
         </PhoneLogin>
       </Link>
+      <Link to={"/email-signIn"}>
+          <SocialLogin>
+            <Grey>이메일 로그인</Grey>
+          </SocialLogin>
+      </Link>
       <Link to={"/social-login"}>
         <SocialLogin>
           <SocialLink>소셜 로그인</SocialLink>
         </SocialLogin>
       </Link>
+
     </Footer>
   </Container>
 );

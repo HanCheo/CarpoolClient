@@ -19,3 +19,25 @@ export const FACEBOOK_CONNECT = gql`
     }
   }
 `;
+
+export const GOOGLE_CONNECT = gql`
+  mutation googleConnect(
+    $firstName: String!
+    $lastName: String!
+    $ggId: String!
+    $email: String
+    $profilePhoto: String!
+  ) {
+    GoogleConnect(
+      firstName: $firstName
+      lastName: $lastName
+      ggId: $ggId
+      email: $email
+      profilePhoto: $profilePhoto
+    ) {
+      ok
+      error
+      token
+    }
+  }
+`;
